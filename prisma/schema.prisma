@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AboutUs {
+  aboutusid   Int       @id @default(autoincrement())
+  description String
+  createdat   DateTime? @default(now())
+  updatedat   DateTime? @default(now())
+}
+
+model ContactRequests {
+  requestid   Int       @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  email       String
+  phonenumber String?
+  message     String
+  status      String?   @default("Pending")
+  createdat   DateTime? @default(now())
+  updatedat   DateTime? @default(now())
+}
+
+model CoursesAndServices {
+  courseserviceid Int       @id @default(autoincrement())
+  name            String
+  description     String
+  category        String
+  requirements    String?
+  startdate       DateTime?
+  enddate         DateTime?
+  createdat       DateTime? @default(now())
+  updatedat       DateTime? @default(now())
+}
+
+model FAQs {
+  faqid     Int       @id @default(autoincrement())
+  category  String
+  question  String
+  answer    String
+  createdat DateTime? @default(now())
+  updatedat DateTime? @default(now())
+}
