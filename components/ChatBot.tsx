@@ -7,6 +7,16 @@ import { AddRequest } from '~/_components/AddRequest';
 import getBotResponse from './getBotResponse'; 
 import TypewriterMsg from './TypewriterMsg'; 
 
+interface BotResponse {
+  candidates?: {
+      content: {
+          parts: {
+              text: string | null;
+          }[];
+      };
+  }[];
+}
+
 export const ChatBot: React.FC = () => {
     // State to track chat messages
     const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
@@ -39,9 +49,13 @@ const handleSendMessage = async() => {
       setMessages((prevMessages) => [...prevMessages, userMessage]);
       setInput(''); 
 
-      const response = await getBotResponse(input);
-      if (response?.candidates && response.candidates.length > 0) {
-          const botResponse = response.candidates[0].content.parts.map(part => part.text).join('\n\n');
+      const response: BotResponse | null = await getBotResponse(input);
+      // (response?.candidates && response.candidates.length > 0)
+      if (response?.candidates && response.candidates.length > 0 && response.candidates[0]?.content?.parts) {
+          const botResponse = response.candidates[0].content.parts
+          .filter(part => part.text !== null)
+          .map(part => part.text)
+          .join('\n\n');
           const botMessage = { sender: 'Chatbot', text: botResponse };
           setMessages((prevMessages) => [...prevMessages, botMessage]);
       } else {
