@@ -3,13 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+  //directUrl = env("DIRECT_URL")
 }
 
 model AboutUs {
   aboutusid   Int       @id @default(autoincrement())
-  description String
+  description String    @db.Text
   createdat   DateTime? @default(now())
   updatedat   DateTime? @default(now())
 }
@@ -20,7 +21,7 @@ model ContactRequests {
   lastname    String
   email       String
   phonenumber String?
-  message     String
+  message     String    @db.Text
   status      String?   @default("Pending")
   createdat   DateTime? @default(now())
   updatedat   DateTime? @default(now())
@@ -29,7 +30,7 @@ model ContactRequests {
 model CoursesAndServices {
   courseserviceid Int       @id @default(autoincrement())
   name            String
-  description     String
+  description     String    @db.Text
   category        String
   requirements    String?
   startdate       DateTime?
@@ -41,8 +42,8 @@ model CoursesAndServices {
 model FAQs {
   faqid     Int       @id @default(autoincrement())
   category  String
-  question  String
-  answer    String
+  question  String    @db.Text
+  answer    String    @db.Text
   createdat DateTime? @default(now())
   updatedat DateTime? @default(now())
 }
