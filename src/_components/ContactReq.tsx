@@ -1,7 +1,3 @@
-"use client";
-//import { ContactRequests } from "@prisma/client";
-//import { useRouter } from "next/router";
-//import React, { useState } from "react";
 import { api } from "../utils/api";
 
 interface ContactType {
@@ -18,7 +14,6 @@ interface ContactType {
 
 export const ContactReq = () => {
 	const contactreq = api.contactr.getContact.useQuery<ContactType[]>();
-	//console.log(contactreq)
 	return (
 		<div>
 			<div className="todo-card">

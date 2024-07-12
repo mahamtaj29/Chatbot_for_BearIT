@@ -1,6 +1,4 @@
-"use client";
-//import { FAQs } from "@prisma/client";
-//import { useRouter } from "next/router";
+//"use client";
 import React, { useState } from "react";
 import { api } from "../utils/api";
 import TypewriterMsg from "components/TypewriterMsg";
@@ -12,14 +10,12 @@ interface FaqType {
     answer: string; 
     createdat: Date | null; 
     updatedat: Date | null; 
-
   }
-
 export const FAQ = () => {
 	const faq = api.faqs.getfaqs.useQuery<FaqType[]>();
 	const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
 	const [showFaqs, setShowFaqs] = useState(false);
-// Group FAQs by category //(acc: any, curr: any)
+// Group FAQs by category 
 const groupedFAQs = faq.data?.reduce((acc: Record<string, FaqType[]>, curr: FaqType) => {
 	if (!acc[curr.category]) {
 		acc[curr.category] = [];
@@ -46,8 +42,7 @@ const groupedFAQs = faq.data?.reduce((acc: Record<string, FaqType[]>, curr: FaqT
                     />
                 </h3>
 			{groupedFAQs && Object.keys(groupedFAQs).map((category: string, index: number) => (
-					<div key={index} className="single-todo">
-						
+					<div key={index}>
 					{selectedCategoryId === index ? (
 						<>
 						{groupedFAQs[category]?.map((faq: FaqType) => (
@@ -71,7 +66,7 @@ const groupedFAQs = faq.data?.reduce((acc: Record<string, FaqType[]>, curr: FaqT
 							</button>
 						</>
 					) : (
-						<div className="todo-btns">
+						<div>
 							<button onClick={() => setSelectedCategoryId(index)}
                                 className="w-60 rounded-md mt-3 bg-white/10 px-10 py-3 font-semibold transition border-2 border-blue-900 hover:bg-white/20 ml-auto block"
                                 >

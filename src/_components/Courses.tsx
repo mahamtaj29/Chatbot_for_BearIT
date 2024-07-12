@@ -1,10 +1,8 @@
-"use client";
-//import { CoursesAndServices } from "@prisma/client";
-//import { useRouter } from "next/router";
+//"use client";
 import React, { useState } from "react";
 import { api } from "../utils/api";
 import TypewriterMsg from "components/TypewriterMsg";
-
+// Define the TypeScript interface for the course data
 interface CourseType {
     courseserviceid: number;
     name: string;
@@ -15,10 +13,9 @@ interface CourseType {
     enddate: Date | null; 
     createdat: Date | null; 
     updatedat: Date | null; 
-
   }
-
 export const Courses = () => {
+    // Fetch course data using the useQuery hook from tRPC
 	const courses = api.courses.getcourses.useQuery<CourseType[]>();
 	const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
     const [showCourses, setShowCourses] = useState(false);
@@ -34,6 +31,7 @@ export const Courses = () => {
             ) : (
 			<div className="todo-card">
                 <h3 className="text-l">
+                    {/* Display introductory message with typewriter effect */}
                     <TypewriterMsg
                     text="Here are the list of four popular Programs. Please click any button to see more details"
                     pace={() => 40}
@@ -67,6 +65,7 @@ export const Courses = () => {
                             </>
                         ) : (
                             <div className="todo-btns">
+                                 {/* Button to select a course and view details */}
                                 <button onClick={() => setSelectedCourseId(course.courseserviceid)}
                                     className="w-60 rounded-md mt-3 bg-white/10 px-10 py-3 font-semibold transition border-2 border-blue-900 hover:bg-white/20 ml-auto block"
                                     >
@@ -76,6 +75,7 @@ export const Courses = () => {
                         )}
                     </div>
 				))}
+                {/* Button to go back to the initial view */}
                 <button
                     onClick={() => setShowCourses(false)}
                     className="rounded-md mt-3 bg-white/10 px-10 py-3 font-semibold text-pink-500 transition border-2 border-blue-900 hover:bg-white/20 ml-auto block"

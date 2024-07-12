@@ -7,55 +7,42 @@ import { AddRequest } from '~/_components/AddRequest';
 import getBotResponse from './getBotResponse'; 
 import TypewriterMsg from './TypewriterMsg'; 
 
-interface BotResponse {
-  candidates?: {
-      content: {
-          parts: {
-              text: string | null;
-          }[];
-      };
-  }[];
-}
-
 export const ChatBot: React.FC = () => {
     // State to track chat messages
     const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
     const [input, setInput] = useState<string>('');
-
+    // States to control the visibility of all components
     const [showAboutus, setShowAboutus] = useState<boolean>(false);
     const [showCourses, setShowCourses] = useState<boolean>(false);
     const [showFAQ, setShowFAQ] = useState<boolean>(false);
     const [showAddRequest, setShowAddRequest] = useState<boolean>(false);
     const [showGreeting, setShowGreeting] = useState<boolean>(true);
 
+    // Ref to keep track of the end of the messages container
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setTimeout(() => setShowAboutus(true), 4000); // Show Aboutus after 5 seconds
-        setTimeout(() => setShowCourses(true), 5000); // Show Courses after 6 second
-        setTimeout(() => setShowFAQ(true), 6000); // Show FAQ after 7 seconds
-        setTimeout(() => setShowAddRequest(true), 7000); // Show AddRequest after 8 seconds
+        setTimeout(() => setShowAboutus(true), 4000); // Show Aboutus after 4 seconds
+        setTimeout(() => setShowCourses(true), 5000); // Show Courses after 5 second
+        setTimeout(() => setShowFAQ(true), 6000); // Show FAQ after 6 seconds
+        setTimeout(() => setShowAddRequest(true), 7000); // Show AddRequest after 7 seconds
     }, []);
-
+    // Hide greeting after 10 seconds
     useEffect(() => {
-      const timer = setTimeout(() => setShowGreeting(false), 10000); // Hide greeting after 5 seconds
+      const timer = setTimeout(() => setShowGreeting(false), 10000); 
       return () => clearTimeout(timer); // Cleanup the timer
     }, []);
     
-// Function to handle sending a message
+  // Function to handle sending a message
 const handleSendMessage = async() => {
-    if (input.trim()) { 
+    if (input.trim()) { // Check if input is not empty
       const userMessage = { sender: 'User', text: input };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
-      setInput(''); 
-
-      const response: BotResponse | null = await getBotResponse(input);
-      // (response?.candidates && response.candidates.length > 0)
+      setInput(''); // Clear the input field
+      // Get bot response from API
+      const response = await getBotResponse(input);
       if (response?.candidates && response.candidates.length > 0 && response.candidates[0]?.content?.parts) {
-          const botResponse = response.candidates[0].content.parts
-          .filter(part => part.text !== null)
-          .map(part => part.text)
-          .join('\n\n');
+          const botResponse = response.candidates[0].content.parts.map(part => part.text).join('\n\n');
           const botMessage = { sender: 'Chatbot', text: botResponse };
           setMessages((prevMessages) => [...prevMessages, botMessage]);
       } else {
@@ -64,16 +51,16 @@ const handleSendMessage = async() => {
         setInput(''); 
     }
   }
-        // Function to scroll to the bottom of the message container
+    // Function to scroll to the bottom of the message container
     const scrollToBottom = () => {
       if (messagesEndRef.current) {
           messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
      }
     };
+    // Effect to scroll to the bottom whenever messages change
     useEffect(() => {
       scrollToBottom();
-  }, [messages]); // Scroll to bottom whenever messages change
-
+  }, [messages]); 
 
   return (
     <div className="flex max-w-s flex-col mb-4"
@@ -86,6 +73,7 @@ const handleSendMessage = async() => {
       width: '100%',
   }}
     >
+      {/* Greeting message with Typewriter effect */}
       <div className="mb-3">
       {showGreeting && (
         <h3 className="text-l">
@@ -96,6 +84,7 @@ const handleSendMessage = async() => {
         </h3>
       )}
       </div>
+      {/* Components shown after delays */}
       {showAboutus && (
         <div className="transition duration-500 ease-in-out transform opacity-0 translate-y-5 animate-fade-in">
             <Aboutus />
@@ -131,7 +120,7 @@ const handleSendMessage = async() => {
             backgroundColor: message.sender === 'Chatbot' ? 'rgb(156 163 175)' : 'rgb(96 165 250)',
             alignSelf: message.sender === 'Chatbot' ? 'flex-start' : 'flex-end'
         }}>
-            {/* <span className="font-bold">{message.sender}:</span> */}
+            {/* Displaying message with Typewriter effect for bot messages */}
               {message.sender === 'Chatbot' ? (
                   <TypewriterMsg text={message.text} pace={() => 60} />
               ) : (
@@ -141,9 +130,11 @@ const handleSendMessage = async() => {
     </div>
     <div ref={messagesEndRef} />
       <div className="flex-auto mt-4">
+        {/* Input field and send button */}
         <input
           type="text"
           className="border-2 border-blue-900 text-black"
+          name="text1"
           value={input}
           placeholder='Start chat with BearBot'
           onChange={(e) => setInput(e.target.value)}

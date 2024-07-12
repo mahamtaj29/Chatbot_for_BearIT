@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import React from 'react'
 import { useState } from 'react';
 import { ChatBot } from './ChatBot';
@@ -8,7 +8,7 @@ export const ChatButton: React.FC = () => {
 
     // Function to open chat window upon clicking
     const openChatBot = () => {
-        setOpenChat(!openChat); // True = !openchat // if else condition.
+        setOpenChat(!openChat); // True = !openchat //
     };
 
   return (
