@@ -1,29 +1,85 @@
-# Create T3 App
+# BearBot Chat Application
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+BearBot is a React-based chat application featuring a chatbot that provides information about various topics such as About Us, Courses, and FAQs. The application uses a typewriter effect for messages and includes Tailwind CSS for styling. This project also integrates with an API to fetch bot responses.
 
-## What's next? How do I make an app with this?
+## Table of Contents
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [API Integration](#api-integration)
+- [Styling](#styling)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Features
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- Chatbot interface for user interaction.
+- Typewriter effect for displaying messages.
+- Fetch and display information about About Us, Courses, and FAQs.
+- Tailwind CSS for responsive and modern UI design.
 
-## Learn More
+## Installation
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+1. **Clone the repository:**
+2. **Install dependencies:**
+3. **Set up environment variables:**
+    Create a `.env` file in the root of your project and add the following:
+    NEXT_PUBLIC_GOOGLE_API_KEY=your_google_api_key
+4. **Start the development server:**
+5. **Open the application:**
+    Open your browser and navigate to `http://localhost:3000`.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Usage
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- **Chat with BearBot:**
+    - Start typing your messages in the input box and click "Send".
+    - BearBot will respond based on the input provided.
+- **View Information:**
+    - Click on the buttons for "About Us", "Courses", and "FAQs" to view more details.
+    - Use the provided back buttons to navigate.
 
-## How do I deploy this?
+## Components
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### ChatBot
+
+- Main component managing the chat interface and state.
+- Displays the chat messages and input box.
+- Handles message sending and API response fetching.
+
+### TypewriterMsg
+
+- Displays messages with a typewriter effect.
+- Accepts text and pace as props to control the speed of the effect.
+
+### AboutUs
+
+- Fetches and displays information about the organization.
+- Provides a button to toggle detailed view.
+
+### Courses
+
+- Fetches and displays information about available courses.
+- Allows users to select a course to view more details.
+
+### FAQ
+
+- Fetches and displays frequently asked questions.
+- Provides a button to toggle detailed view.
+
+### AddRequest
+
+- Provides a form for users to add new requests or inquiries.
+
+## API Integration
+
+- The application uses an API to fetch chatbot responses.
+- The `getBotResponse` function sends a POST request to the API with the user input.
+- The API key for the Google API is stored in environment variables.
+
+## Styling
+
+- Tailwind CSS is used for styling the application.
+- Custom colors and styles are defined in the `tailwind.config.js` file.
+- Utility classes are used for layout, spacing, typography, and hover effects.
+
+
