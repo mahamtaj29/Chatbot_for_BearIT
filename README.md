@@ -2,7 +2,7 @@
 
 BearBot is a React-based chat application featuring a chatbot that provides information about various topics such as About Us, Courses, and FAQs. The application uses a typewriter effect for messages and includes Tailwind CSS for styling. This project also integrates with an API to fetch bot responses.
 
-Check out the live demo on Vercel: [BearBot for BearIT](https://chatbot-for-bear-it-maham-tajs-projects.vercel.app/)
+
 
 ## Table of Contents
 
