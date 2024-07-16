@@ -38,7 +38,8 @@ const handleSendMessage = async() => {
     if (input.trim()) { // Check if input is not empty
       const userMessage = { sender: 'User', text: input };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
-      setInput(''); // Clear the input field
+       // Clear the input field
+      setInput('');
       // Get bot response from API
       const response = await getBotResponse(input);
       if (response?.candidates && response.candidates.length > 0 && response.candidates[0]?.content?.parts) {

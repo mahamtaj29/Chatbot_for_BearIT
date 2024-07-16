@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { api } from "../utils/api";
+import TypewriterMsg from "components/TypewriterMsg";
+
 export const AddRequest = () => {
     // Uses tRPC's useContext to get the context for making API calls
 	const utils = api.useUtils();
@@ -65,6 +67,15 @@ export const AddRequest = () => {
             Contact BearIT →
         </button>
         ) : (
+            <div >
+            <h3 className="text-l">
+                {/* Display introductory message with typewriter effect */}
+                <TypewriterMsg
+                text="Please share your query and contact information with us!"
+                pace={() => 40}
+                />
+            </h3>
+        
 		<form className="inputs" onSubmit={handleSubmit}>
 			<input
 				type="text"
@@ -163,11 +174,12 @@ export const AddRequest = () => {
             >
                 Send</button>
                 <button type="submit"
-            className="rounded-md bg-white/10 px-4 py-3 font-semibold transition border-2 border-blue-900 hover:bg-white/20"
+           className="rounded-md px-4 py-3 font-semibold text-purple-600 transition border-2 border-blue-900 hover:bg-white/20"
             onClick={() => setShowForm(false)}>
                 Back </button>
             </div>
 		</form>
+        </div>
         )}
         {showSuccessMessage && (
         <div className="success-message">
