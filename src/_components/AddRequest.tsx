@@ -71,7 +71,7 @@ export const AddRequest = () => {
             <h3 className="text-l">
                 {/* Display introductory message with typewriter effect */}
                 <TypewriterMsg
-                text="Please share your query and contact information with us!"
+                text="Please share your query and contact information with us. We'll reach out soon!"
                 pace={() => 40}
                 />
             </h3>
