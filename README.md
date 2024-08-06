@@ -4,6 +4,10 @@ BearBot is a React-based chat application featuring a chatbot that provides info
 
 
 
+## Live Demo
+
+Check out the live demo on Vercel: [BearIT Chatbot app](https://chatbot-for-bear-it.vercel.app/)
+
 ## Table of Contents
 
 - [Features](#features)
