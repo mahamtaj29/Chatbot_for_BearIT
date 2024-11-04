@@ -26,7 +26,7 @@ Check out the live demo on Vercel: [BearIT Chatbot app](https://chatbot-for-bear
 
 ## Installation
 
-1. **Clone the repository:**
+1. Clone the repository:
 2. **Install dependencies:**
 3. **Set up environment variables:**
     Create a `.env` file in the root of your project and add the following:
