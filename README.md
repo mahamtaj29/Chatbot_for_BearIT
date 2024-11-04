@@ -1,8 +1,9 @@
 # BearBot Chat Application
 
-BearBot is a React-based chat application featuring a chatbot that provides information about various topics such as About Us, Courses, and FAQs. The application uses a typewriter effect for messages and includes Tailwind CSS for styling. This project also integrates with an API to fetch bot responses.
+BearBot is a React-based chat application featuring a chatbot that provides information about various topics such as About Us, Courses, and FAQs. The application uses a typewriter effect for messages and includes Tailwind CSS for styling. This project also integrates with an API to fetch bot responses. 
 
-
+## T3 Stack
+The project is built using t3 Stack. The “T3 Stack” is a web development stack made by Theo focused on simplicity, modularity, and full-stack typesafety. The core pieces are Next.js, TypeScript, Tailwind CSS, tRPC, Prisma, and NextAuth.js.
 
 ## Live Demo
 
